@@ -1,8 +1,8 @@
 import React from 'react';
-import '../assets/style/Admin.scss';
+import '../../assets/style/Admin.scss';
 import MainContent from './MainContent';
 import Navbar from './Navbar';
-import Sidebar from '../component/Slidebar';
+import Sidebar from './Slidebar';
 
 //function return component
 
@@ -18,6 +18,12 @@ export default class ShoppingAdmin extends React.Component {
             sidebar_open:!this.state.sidebar_open
         })
     }
+    componentDidMount(){
+        const token = window.localStorage.getItem('admin_token');
+        if(!token){
+            this.props.history.push('/admin/login')
+        }
+    }
     render(){
         return <div className="container-fluid">
             <div className="row">
@@ -30,7 +36,7 @@ export default class ShoppingAdmin extends React.Component {
                     {/* NAVBAR */}
                    
                     <Navbar toggleSidebar={this.toggleSidebar}/>
-                    <MainContent></MainContent>
+                    <MainContent history={this.props.history}></MainContent>
                 </div>
             </div>
         </div>

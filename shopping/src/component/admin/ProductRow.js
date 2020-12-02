@@ -1,13 +1,13 @@
 import React from 'react'
 
 export default function ProductRow(props){
-    const HandleDelete = () =>{
+    const handleDelete = () => {
         props.deleteProduct(props.product.id)
     }
-    const HandleUpdate = () =>{
+    const handleUpdate = () => {
         props.updateIsEditting(props.product.id)
     }
-    console.log("COMPONENT PROPS:",props)
+
     const {id,name,price,image} = props.product
     return  <div className="table-rows">
     <div className="table-cell">
@@ -20,13 +20,13 @@ export default function ProductRow(props){
         {price}$
     </div>
     <div className="table-cell">
-        <img src={image} />
+        <img src={image[0]} />
     </div>
     <div className="table-cell">
-        <button className="btn edit-btn" onClick={HandleUpdate}>
+        <button className="btn text-primary" onClick={handleUpdate}>
                 Edit
         </button>
-        <button className="btn delete-btn" onClick={HandleDelete}>
+        <button className="btn text-danger" onClick={handleDelete}>
                 Delete
         </button>
     </div>
